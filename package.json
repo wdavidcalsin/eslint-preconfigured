@@ -1,7 +1,7 @@
 {
   "name": "predefined-eslint-settings",
   "private": false,
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "This package provides a script that installs all the necessary dependencies for Eslint with Prettier and creates the Eslint configuration files.",
   "bin": "lib/bin.js",
   "main": "lib/index.js",
