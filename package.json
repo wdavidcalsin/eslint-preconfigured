@@ -1,9 +1,8 @@
 {
   "name": "predefined-eslint-settings",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "predefined-eslint-settings": "./settings.sh"
   },
@@ -11,13 +10,12 @@
   "author": "@wdavid",
   "license": "MIT",
   "keywords": [
-    "mui-theme-pack",
-    "mui",
-    "material ui",
-    "@material-ui",
-    "react",
-    "react-component",
-    "material design"
+    "eslint",
+    "eslint config",
+    "prettier",
+    "prettier config",
+    "predefined eslint ",
+    "predefined prettier"
   ],
   "repository": {
     "type": "git",

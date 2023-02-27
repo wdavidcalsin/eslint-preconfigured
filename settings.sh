@@ -19,7 +19,7 @@ pnpm install --save-dev prettier
 pnpm install --save-dev prettier-eslint
 
 
-echo "{
+echo '{
   "env": {
     "browser": true,
     "es2021": true
@@ -53,20 +53,20 @@ echo "{
     "react/jsx-uses-react": "warn",
     "@typescript-eslint/triple-slash-reference": 0
   }
-}" > .eslintrc.json
+}' > .eslintrc.json
 
-echo "package.json
+echo 'package.json
 yarn.lock
 pnpm-lock.yaml
 node_modules
-dist" > .eslintignore
+dist' > .eslintignore
 
-echo "{
+echo '{
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,
   "singleQuote": true
-}" > .prettierrc
+}' > .prettierrc
 
 
 # Add the "lint", "prettier", and "format" commands to package.json.
