@@ -1,0 +1,27 @@
+{
+  "name": "predefined-eslint-settings",
+  "private": false,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "predefined-eslint-settings": "./settings.sh"
+  },
+  "bin": "./settings.sh",
+  "author": "@wdavid",
+  "license": "MIT",
+  "keywords": [
+    "mui-theme-pack",
+    "mui",
+    "material ui",
+    "@material-ui",
+    "react",
+    "react-component",
+    "material design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wdavidcalsin/predefined-eslint-settings"
+  },
+  "homepage": "https://github.com/wdavidcalsin/predefined-eslint-settings"
+}
