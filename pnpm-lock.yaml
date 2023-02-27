@@ -13,6 +13,7 @@ specifiers:
   typescript: ^4.9.5
 
 dependencies:
+  figlet: 1.5.2
   fs-extra: 11.1.0
 
 devDependencies:
@@ -20,7 +21,6 @@ devDependencies:
   '@types/fs-extra': 11.0.1
   '@types/node': 18.14.2
   child_process: 1.0.2
-  figlet: 1.5.2
   fs: 0.0.1-security
   husky: 8.0.3
   path: 0.12.7
@@ -56,7 +56,7 @@ packages:
   /figlet/1.5.2:
     resolution: {integrity: sha512-WOn21V8AhyE1QqVfPIVxe3tupJacq1xGkPTB4iagT6o+P2cAgEOOwIxMftr4+ZCTI6d551ij9j61DFr0nsP2uQ==}
     engines: {node: '>= 0.4.0'}
-    dev: true
+    dev: false
 
   /fs-extra/11.1.0:
     resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
