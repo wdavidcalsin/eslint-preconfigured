@@ -51,7 +51,6 @@ export function createEslintrc() {
   // Check if a configuration file already exists
   if (existsSync(configFilePath)) {
     console.log("ESLint configuration file already exists.");
-    return;
   } else {
     // Write the configuration file
     writeFileSync(configFilePath, JSON.stringify(eslintConfig, null, 2));

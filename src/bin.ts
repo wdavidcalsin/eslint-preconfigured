@@ -11,7 +11,7 @@ try {
   // Run command or show usage for unknown command
   createEslintrc();
   helpInstall();
-  void addScriptToPackageJson();
+  addScriptToPackageJson();
   installPackage();
   console.log("ESLint and the necessary dependencies have been installed.");
 } catch (e) {
