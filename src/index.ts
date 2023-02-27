@@ -44,15 +44,13 @@ const eslintConfig = {
 export function createEslintrc() {
   // Defines the path where the file will be written.
   let configFilePath = "";
-  if (process.platform === "win32") {
-    configFilePath = `${process.env.APPDATA}/npm/${CONFIG_FILE_NAME}`;
-  } else {
-    configFilePath = `${process.env.HOME}/${CONFIG_FILE_NAME}`;
-  }
+
+  configFilePath = `${process.env.HOME}/${CONFIG_FILE_NAME}`;
 
   // Check if a configuration file already exists
   if (existsSync(configFilePath)) {
     console.log("ESLint configuration file already exists.");
+    return;
   } else {
     // Write the configuration file
     writeFileSync(configFilePath, JSON.stringify(eslintConfig, null, 2));
