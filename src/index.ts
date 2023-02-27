@@ -59,7 +59,7 @@ export function createEslintrc() {
 }
 
 export function installPackage() {
-  execFile("../settings.cmd", (error, stdout, stderr) => {
+  exec("chmod +x ../settings.cmd", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
@@ -67,10 +67,8 @@ export function installPackage() {
     console.log(`stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
   });
-}
 
-export function executionsPermissions() {
-  exec("chmod +x path/to/settings.cmd", (error, stdout, stderr) => {
+  execFile("../settings.cmd", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
