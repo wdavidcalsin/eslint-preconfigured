@@ -6,6 +6,7 @@ specifiers:
   child_process: ^1.0.2
   fs: 0.0.1-security
   fs-extra: ^11.1.0
+  husky: ^8.0.0
   path: ^0.12.7
   typescript: ^4.9.5
 
@@ -15,6 +16,7 @@ devDependencies:
   child_process: 1.0.2
   fs: 0.0.1-security
   fs-extra: 11.1.0
+  husky: 8.0.3
   path: 0.12.7
   typescript: 4.9.5
 
@@ -56,6 +58,12 @@ packages:
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
+    dev: true
+
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /inherits/2.0.3:
