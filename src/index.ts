@@ -1,4 +1,4 @@
-import { execFile, execSync } from "child_process";
+import { execFile } from "child_process";
 import { existsSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import * as fs from "fs-extra";
@@ -56,14 +56,6 @@ export function createEslintrc() {
     writeFileSync(configFilePath, JSON.stringify(eslintConfig, null, 2));
     console.log(`ESLint configuration file created in ${configFilePath}.`);
   }
-}
-
-export function helpInstall() {
-  // Install ESLint and necessary dependencies
-  const packageManager = process.platform === "win32" ? "npm.cmd" : "npm";
-  execSync(
-    `${packageManager} install --save-dev eslint eslint-config-prettier eslint-config-standard-with-typescript eslint-plugin-import eslint-plugin-n eslint-plugin-promise eslint-plugin-react prettier prettier-eslint`
-  );
 }
 
 export function installPackage() {
