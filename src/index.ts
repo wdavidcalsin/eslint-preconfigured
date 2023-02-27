@@ -1,5 +1,6 @@
 import { execFile, execSync } from "child_process";
 import { existsSync, writeFileSync } from "fs";
+import { resolve } from "path";
 import * as fs from "fs-extra";
 
 const CONFIG_FILE_NAME = ".eslintrc.json";
@@ -45,7 +46,7 @@ export function createEslintrc() {
   // Defines the path where the file will be written.
   let configFilePath = "";
 
-  configFilePath = `${process.env.HOME}/${CONFIG_FILE_NAME}`;
+  configFilePath = resolve(__dirname, "..", CONFIG_FILE_NAME);
 
   // Check if a configuration file already exists
   if (existsSync(configFilePath)) {
