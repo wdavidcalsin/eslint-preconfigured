@@ -46,7 +46,7 @@ export function createEslintrc() {
   // Defines the path where the file will be written.
   let configFilePath = "";
 
-  configFilePath = resolve(__dirname, "..", CONFIG_FILE_NAME);
+  configFilePath = resolve(process.cwd(), "..", CONFIG_FILE_NAME);
 
   // Check if a configuration file already exists
   if (existsSync(configFilePath)) {
