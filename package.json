@@ -1,8 +1,11 @@
 {
   "name": "predefined-eslint-settings",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "This package provides a script that installs all the necessary dependencies for Eslint with Prettier and creates the Eslint configuration files.",
+  "scripts": {
+    "predefined-eslint-settings": "settings.sh"
+  },
   "bin": {
     "predefined-eslint-settings": "settings.sh"
   },
@@ -23,6 +26,5 @@
   "homepage": "https://github.com/wdavidcalsin/predefined-eslint-settings",
   "bugs": {
     "url": "https://github.com/wdavidcalsin/predefined-eslint-settings/issues"
-  },
-  "main": "index.js"
+  }
 }
