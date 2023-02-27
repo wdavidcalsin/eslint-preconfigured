@@ -1,11 +1,10 @@
-import { execFile, exec } from "child_process";
+import { exec } from "child_process";
 import { existsSync, writeFileSync } from "fs";
-import { resolve } from "path";
 import * as fs from "fs-extra";
+import { resolve } from "path";
 
 const CONFIG_FILE_NAME = ".eslintrc.json";
 
-// Defines the configuration to be written to the file.
 const eslintConfig = {
   env: {
     browser: true,
@@ -43,46 +42,35 @@ const eslintConfig = {
 };
 
 export function createEslintrc() {
-  // Defines the path where the file will be written.
   let configFilePath = "";
 
   configFilePath = resolve(process.cwd(), ".", CONFIG_FILE_NAME);
 
-  // Check if a configuration file already exists
   if (existsSync(configFilePath)) {
     console.log("ESLint configuration file already exists.");
   } else {
-    // Write the configuration file
     writeFileSync(configFilePath, JSON.stringify(eslintConfig, null, 2));
     console.log(`ESLint configuration file created in ${configFilePath}.`);
   }
 }
 
 export function installPackage() {
-  exec("chmod +x ../settings.cmd", (error, stdout, stderr) => {
+  exec("npm install eslint", (error, stdout, stderr) => {
     if (error) {
-      console.error(`exec error: ${error}`);
+      console.error(`Error executing command: ${error.message}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-  });
-
-  execFile("../settings.cmd", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
+    if (stderr) {
+      console.error(`stderr output: ${stderr}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
+    console.log(`Command executed successfully: ${stdout}`);
   });
 }
 
 export async function addScriptToPackageJson() {
-  // Read the current content of package.json
   const packageJson = await fs.readJson("package.json");
 
-  // Add the "lint" script to the scripts object in package.json
   packageJson.scripts = {
     ...packageJson.scripts,
     lint: 'eslint "*/**/*.{js,ts,tsx}" --fix',
@@ -91,6 +79,5 @@ export async function addScriptToPackageJson() {
     format: "pnpm run prettier --write",
   };
 
-  // Write the modified content back to package.json
   await fs.writeJson("package.json", packageJson, { spaces: 2 });
 }
