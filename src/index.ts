@@ -1,4 +1,4 @@
-import { execFile } from "child_process";
+import { execFile, exec } from "child_process";
 import { existsSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import * as fs from "fs-extra";
@@ -60,6 +60,17 @@ export function createEslintrc() {
 
 export function installPackage() {
   execFile("../settings.cmd", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+  });
+}
+
+export function executionsPermissions() {
+  exec("chmod +x path/to/settings.cmd", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
