@@ -3,11 +3,15 @@
   "private": false,
   "version": "1.4.0",
   "description": "This package provides a script that installs all the necessary dependencies for Eslint with Prettier and creates the Eslint configuration files.",
+  "bin": "lib/bin.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "settings.sh"
+  ],
   "scripts": {
-    "predefined-eslint-settings": "./settings.sh"
-  },
-  "bin": {
-    "predefined-eslint-settings": "settings.sh"
+    "build": "tsc",
+    "predefined-eslint-settings": "./settings.cmd"
   },
   "author": "@wdavid",
   "license": "MIT",
@@ -16,7 +20,7 @@
     "eslint config",
     "prettier",
     "prettier config",
-    "predefined eslint ",
+    "predefined eslint",
     "predefined prettier"
   ],
   "repository": {
@@ -26,5 +30,13 @@
   "homepage": "https://github.com/wdavidcalsin/predefined-eslint-settings",
   "bugs": {
     "url": "https://github.com/wdavidcalsin/predefined-eslint-settings/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "child_process": "^1.0.2",
+    "fs": "0.0.1-security",
+    "fs-extra": "^11.1.0",
+    "path": "^0.12.7",
+    "typescript": "^4.9.5"
   }
 }
