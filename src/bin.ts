@@ -1,14 +1,25 @@
 #!/usr/bin/env node
-import { addScriptToPackageJson, createEslintrc, installPackage } from ".";
+import { textSync } from "figlet";
+
+import {
+  addScriptToPackageJson,
+  createConfigurationFile,
+  ensureDependencies,
+} from ".";
+import { dependencyPackagesToInstall } from "./constants";
 
 try {
-  createEslintrc();
+  console.log(textSync("Eslint Config"));
+
+  createConfigurationFile();
+
   addScriptToPackageJson();
-  installPackage(() => {
-    console.log("The package has been successfully installed!");
-  });
+
+  ensureDependencies(dependencyPackagesToInstall);
+
   console.log("ESLint and the necessary dependencies have been installed.");
 } catch (e) {
   console.error(e instanceof Error ? `eslint - ${e.message}` : e);
+
   process.exit(1);
 }
