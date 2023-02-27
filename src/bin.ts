@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 import { addScriptToPackageJson, createEslintrc, installPackage } from ".";
 
-// Run CLI
 try {
-  // Run command or show usage for unknown command
   createEslintrc();
   addScriptToPackageJson();
-  installPackage();
+  installPackage(() => {
+    console.log("The package has been successfully installed!");
+  });
   console.log("ESLint and the necessary dependencies have been installed.");
 } catch (e) {
   console.error(e instanceof Error ? `eslint - ${e.message}` : e);

@@ -50,11 +50,12 @@ export function createEslintrc() {
     console.log("ESLint configuration file already exists.");
   } else {
     writeFileSync(configFilePath, JSON.stringify(eslintConfig, null, 2));
+
     console.log(`ESLint configuration file created in ${configFilePath}.`);
   }
 }
 
-export function installPackage() {
+export function installPackage(callback: () => void) {
   exec("npm install eslint", (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing command: ${error.message}`);
@@ -65,6 +66,7 @@ export function installPackage() {
       return;
     }
     console.log(`Command executed successfully: ${stdout}`);
+    callback();
   });
 }
 
