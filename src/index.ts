@@ -1,4 +1,7 @@
 import { exec } from "child_process";
+import { existsSync, writeFileSync } from "fs";
+import * as fs from "fs-extra";
+import { resolve } from "path";
 import {
   CONFIG_FILE_NAME_ESLINT,
   CONFIG_FILE_NAME_ESLINT_IGNORE,
@@ -6,12 +9,10 @@ import {
   eslintConfig,
   eslintConfigIgnore,
   isNpm,
+  isPnpm,
   isYarn,
   prettierConfig,
 } from "./constants";
-import { existsSync, writeFileSync } from "fs";
-import * as fs from "fs-extra";
-import { resolve } from "path";
 import { IDependencies } from "./types/types-package";
 
 function ensureFileExists(fileName: string, contentFile: string) {
@@ -54,12 +55,12 @@ export async function addScriptToPackageJson() {
 }
 
 function packageManager() {
-  if (isNpm) {
-    return "npm install ";
-  } else if (isYarn) {
+  if (isNpm && isYarn) {
     return "yarn add ";
+  } else if (isNpm && isPnpm) {
+    return "pnpm install ";
   } else {
-    return "pnpm install";
+    return "npm install ";
   }
 }
 

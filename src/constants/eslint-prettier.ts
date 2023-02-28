@@ -1,4 +1,5 @@
 import { IDependencies } from "../types";
+import * as fs from "fs-extra";
 
 export const CONFIG_FILE_NAME_ESLINT = ".eslintrc.json";
 export const CONFIG_FILE_NAME_ESLINT_IGNORE = ".eslintignore";
@@ -92,6 +93,10 @@ export const dependencyPackagesToInstall: IDependencies[] = [
   },
 ];
 
-export const isNpm = !!process.env.npm_config_user_agent?.includes("npm");
-export const isYarn = !!process.env.npm_config_user_agent?.includes("yarn");
-export const isPnpm = !!process.env.npm_config_user_agent?.includes("pnpm");
+const PATH_NPM_FILE = "./package-lock.json";
+const PATH_YARN_FILE = "./yarn.lock";
+const PATH_PNPM_FILE = "./pnpm-lock.yaml";
+
+export const isNpm = fs.existsSync(PATH_NPM_FILE);
+export const isYarn = fs.existsSync(PATH_YARN_FILE);
+export const isPnpm = fs.existsSync(PATH_PNPM_FILE);
