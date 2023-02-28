@@ -55,10 +55,12 @@ export async function addScriptToPackageJson() {
 }
 
 function packageManager() {
-  if (isNpm && isYarn) {
+  if (isYarn) {
     return "yarn add ";
-  } else if (isNpm && isPnpm) {
+  } else if (isPnpm) {
     return "pnpm install ";
+  } else if (isNpm) {
+    return "npm install ";
   } else {
     return "npm install ";
   }
@@ -87,8 +89,6 @@ export function ensureDependencies(dependencies: IDependencies[]) {
     const installCommands = missingDependencies
       .map((dep) => `${packageManager()} ${dep.name} ${dep.typeDependencies}`)
       .join(" && ");
-
-    console.log("Is command line: ", installCommands);
 
     exec(installCommands, (err) => {
       if (err) {
