@@ -1,5 +1,5 @@
 {
-  "name": "eslint-configuration",
+  "name": "eslint-preconfigured",
   "private": false,
   "version": "2.9.6",
   "description": "This package provides a script that installs all the necessary dependencies for Eslint with Prettier and creates the Eslint configuration files.",
@@ -12,26 +12,26 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts src/bin.ts --dts --out-dir lib",
-    "eslint-configuration": "./settings.cmd",
+    "eslint-preconfigured": "./settings.cmd",
     "prepare": "husky install"
   },
   "author": "@wdavid",
   "license": "MIT",
   "keywords": [
     "eslint",
-    "eslint config",
+    "eslint-config",
     "prettier",
-    "prettier config",
-    "predefined eslint",
-    "predefined prettier"
+    "prettier-config",
+    "predefined-eslint",
+    "eslint-preconfigured"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wdavidcalsin/eslint-configuration"
+    "url": "git+https://github.com/wdavidcalsin/eslint-preconfigured"
   },
-  "homepage": "https://github.com/wdavidcalsin/eslint-configuration",
+  "homepage": "https://github.com/wdavidcalsin/eslint-preconfigured",
   "bugs": {
-    "url": "https://github.com/wdavidcalsin/eslint-configuration/issues"
+    "url": "https://github.com/wdavidcalsin/eslint-preconfigured/issues"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",

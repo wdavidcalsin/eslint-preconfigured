@@ -1,4 +1,4 @@
-## Eslint Configuration
+## Eslint Preconfigured
 
 This package provides a script that installs all the necessary dependencies for Eslint with Prettier and creates the Eslint configuration files.
 
@@ -7,7 +7,7 @@ This package provides a script that installs all the necessary dependencies for 
 You can install this package using NPM:
 
 ```sh
-npm install eslint-configuration
+npm install eslint-preconfigured
 ```
 
 ### Usage
@@ -15,7 +15,7 @@ npm install eslint-configuration
 To use this package, simply run the following command:
 
 ```sh
-npx eslint-configuration
+npx eslint-preconfigured
 ```
 
 This will install all the necessary dependencies and create the Eslint configuration files for your project.
