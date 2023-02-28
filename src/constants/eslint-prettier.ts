@@ -91,3 +91,7 @@ export const dependencyPackagesToInstall: IDependencies[] = [
     typeDependencies: "--save-dev",
   },
 ];
+
+export const isNpm = !!process.env.npm_config_user_agent?.includes("npm");
+export const isYarn = !!process.env.npm_config_user_agent?.includes("yarn");
+export const isPnpm = !!process.env.npm_config_user_agent?.includes("pnpm");

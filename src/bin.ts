@@ -1,15 +1,19 @@
 #!/usr/bin/env node
-import { textSync } from "figlet";
 
 import {
   addScriptToPackageJson,
   createConfigurationFile,
   ensureDependencies,
 } from ".";
-import { dependencyPackagesToInstall } from "./constants";
+import {
+  dependencyPackagesToInstall,
+  isNpm,
+  isPnpm,
+  isYarn,
+} from "./constants";
 
 try {
-  console.log(textSync("Eslint Config"));
+  console.table({ isNpm, isYarn, isPnpm });
 
   createConfigurationFile();
 

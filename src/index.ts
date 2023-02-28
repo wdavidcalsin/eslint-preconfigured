@@ -1,18 +1,20 @@
 import { exec } from "child_process";
-import { existsSync, writeFileSync } from "fs";
-import * as fs from "fs-extra";
-import { resolve } from "path";
 import {
   CONFIG_FILE_NAME_ESLINT,
   CONFIG_FILE_NAME_ESLINT_IGNORE,
   CONFIG_FILE_NAME_PRETTIER,
   eslintConfig,
   eslintConfigIgnore,
+  isNpm,
+  isYarn,
   prettierConfig,
 } from "./constants";
-import { IDependencies } from "./types";
+import { existsSync, writeFileSync } from "fs";
+import * as fs from "fs-extra";
+import { resolve } from "path";
+import { IDependencies } from "./types/types-package";
 
-function isFileOrCreate(fileName: string, contentFile: string) {
+function ensureFileExists(fileName: string, contentFile: string) {
   const fileNameResolve = resolve(process.cwd(), ".", fileName);
 
   if (existsSync(fileNameResolve)) {
@@ -24,14 +26,14 @@ function isFileOrCreate(fileName: string, contentFile: string) {
 }
 
 export function createConfigurationFile() {
-  isFileOrCreate(
+  ensureFileExists(
     CONFIG_FILE_NAME_ESLINT,
     JSON.stringify(eslintConfig, null, 2)
   );
 
-  isFileOrCreate(CONFIG_FILE_NAME_ESLINT_IGNORE, eslintConfigIgnore);
+  ensureFileExists(CONFIG_FILE_NAME_ESLINT_IGNORE, eslintConfigIgnore);
 
-  isFileOrCreate(
+  ensureFileExists(
     CONFIG_FILE_NAME_PRETTIER,
     JSON.stringify(prettierConfig, null, 2)
   );
@@ -51,33 +53,46 @@ export async function addScriptToPackageJson() {
   await fs.writeJson("package.json", packageJson, { spaces: 2 });
 }
 
-export function ensureDependencies(dependencies: IDependencies[]) {
-  return new Promise<void>((res) => {
-    try {
-      for (let dependency of dependencies) {
-        require(dependency.name);
-      }
-      res();
-    } catch (e) {
-      const dependenciesToInstall = dependencies
-        .filter((dependency) => {
-          try {
-            require(dependency.name);
-            return false;
-          } catch {
-            return true;
-          }
-        })
-        .map((dependency) => {
-          console.log("Installing eslint dependencies...");
-          return `npm i ${dependency.name} ${dependency.typeDependencies}`;
-        })
-        .join(" && ");
+function packageManager() {
+  if (isNpm) {
+    return "npm install ";
+  } else if (isYarn) {
+    return "yarn add ";
+  } else {
+    return "pnpm install";
+  }
+}
 
-      exec(dependenciesToInstall, async () => {
-        console.log(dependenciesToInstall);
-        res();
-      });
+function getInstalledDependencies(): Record<string, string> {
+  const packageJson = JSON.parse(fs.readFileSync("./package.json").toString());
+  return { ...packageJson.dependencies, ...packageJson.devDependencies };
+}
+
+export function ensureDependencies(dependencies: IDependencies[]) {
+  return new Promise<void>((resolve, reject) => {
+    const missingDependencies: IDependencies[] = [];
+
+    for (const dependency of dependencies) {
+      if (!(dependency.name in getInstalledDependencies())) {
+        missingDependencies.push(dependency);
+      }
     }
+
+    if (missingDependencies.length === 0) {
+      resolve();
+      return;
+    }
+
+    const installCommands = missingDependencies
+      .map((dep) => `${packageManager()} ${dep.name} ${dep.typeDependencies}`)
+      .join(" && ");
+
+    exec(installCommands, (err) => {
+      if (err) {
+        reject(new Error(`Failed to install dependencies: ${err.message}`));
+      } else {
+        resolve();
+      }
+    });
   });
 }

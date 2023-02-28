@@ -1,4 +1,11 @@
-import { IDependencies } from "./types";
-export declare function createConfigurationFile(): void;
-export declare function addScriptToPackageJson(): Promise<void>;
-export declare function ensureDependencies(dependencies: IDependencies[]): Promise<void>;
+type typeDependencies = "--save" | "--save-dev";
+interface IDependencies {
+    name: string;
+    typeDependencies: typeDependencies;
+}
+
+declare function createConfigurationFile(): void;
+declare function addScriptToPackageJson(): Promise<void>;
+declare function ensureDependencies(dependencies: IDependencies[]): Promise<void>;
+
+export { addScriptToPackageJson, createConfigurationFile, ensureDependencies };
