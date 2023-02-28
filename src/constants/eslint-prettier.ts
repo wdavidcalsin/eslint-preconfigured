@@ -56,6 +56,14 @@ export const prettierConfig = {
 
 export const dependencyPackagesToInstall: IDependencies[] = [
   {
+    name: "@typescript-eslint/eslint-plugin",
+    typeDependencies: "--save-dev",
+  },
+  {
+    name: "@typescript-eslint/parser",
+    typeDependencies: "--save-dev",
+  },
+  {
     name: "eslint",
     typeDependencies: "--save-dev",
   },
