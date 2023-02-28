@@ -88,6 +88,8 @@ export function ensureDependencies(dependencies: IDependencies[]) {
       .map((dep) => `${packageManager()} ${dep.name} ${dep.typeDependencies}`)
       .join(" && ");
 
+    console.log("Is command line: ", installCommands);
+
     exec(installCommands, (err) => {
       if (err) {
         reject(new Error(`Failed to install dependencies: ${err.message}`));
